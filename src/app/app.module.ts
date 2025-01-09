@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import {authInterceptor} from './service/auth.interceptor';
+import {InterfaceMessComponent} from './components/interface-mess/interface-mess.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {authInterceptor} from './service/auth.interceptor';
     LoginComponent,
     MainMenuComponent,
     RegisterComponent,
+    InterfaceMessComponent
   ],
   imports: [
     BrowserModule,

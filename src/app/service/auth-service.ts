@@ -4,6 +4,9 @@ import { Observable, tap } from 'rxjs';
 import {AuthResponse, SignInRequest} from '../models/auth-request';
 import {catchError} from 'rxjs/operators';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   private readonly TOKEN_KEY = 'access_token';
   private readonly USER_KEY = 'user_name';
@@ -13,7 +16,6 @@ export class AuthService {
   login(credentials: SignInRequest): Observable<AuthResponse> {
     console.log('Login attempt with:', { email: credentials.email });
 
-    // Set content type header
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http.post<AuthResponse>('/user/sign-in', credentials, { headers })
