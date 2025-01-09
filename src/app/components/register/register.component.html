@@ -1,45 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration Page</title>
-</head>
-<body>
 <div class="container">
   <h2>Registration</h2>
-  <form action="/user/sign-up" method="post">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="firstname">First Name</label>
-      <input type="text" id="firstname" name="firstname" required>
+      <input type="text" id="firstname" formControlName="firstname">
+      <div *ngIf="registerForm.get('firstname')?.errors?.['required'] && registerForm.get('firstname')?.touched"
+           class="error-message">
+        First name is required
+      </div>
     </div>
+
     <div class="form-group">
       <label for="lastname">Last Name</label>
-      <input type="text" id="lastname" name="lastname" required>
+      <input type="text" id="lastname" formControlName="lastname">
+      <div *ngIf="registerForm.get('lastname')?.errors?.['required'] && registerForm.get('lastname')?.touched"
+           class="error-message">
+        Last name is required
+      </div>
     </div>
+
     <div class="form-group">
       <label for="phone">Phone</label>
-      <input type="tel" id="phone" name="phone" required>
+      <input type="tel" id="phone" formControlName="phone">
+      <div *ngIf="registerForm.get('phone')?.errors?.['required'] && registerForm.get('phone')?.touched"
+           class="error-message">
+        Phone is required
+      </div>
     </div>
+
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" id="username" name="username" required>
+      <input type="text" id="username" formControlName="username">
+      <div *ngIf="registerForm.get('username')?.errors?.['required'] && registerForm.get('username')?.touched"
+           class="error-message">
+        Username is required
+      </div>
     </div>
+
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
+           class="error-message">
+        Email is required
+      </div>
+      <div *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
+           class="error-message">
+        Please enter a valid email
+      </div>
     </div>
+
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" formControlName="password">
+      <div *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+           class="error-message">
+        Password is required
+      </div>
+      <div *ngIf="registerForm.get('password')?.errors?.['minlength'] && registerForm.get('password')?.touched"
+           class="error-message">
+        Password must be at least 6 characters
+      </div>
     </div>
+
     <div class="form-group">
       <label for="address">Address</label>
-      <input type="text" id="address" name="address" required>
+      <input type="text" id="address" formControlName="address">
+      <div *ngIf="registerForm.get('address')?.errors?.['required'] && registerForm.get('address')?.touched"
+           class="error-message">
+        Address is required
+      </div>
     </div>
-    <button type="submit" class="btn">Register</button>
+
+    <button type="submit" class="btn" [disabled]="!registerForm.valid">Register</button>
   </form>
 </div>
-</body>
-</html>
-
